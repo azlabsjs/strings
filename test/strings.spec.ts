@@ -15,7 +15,7 @@ describe('Strings utilities functions', () => {
   });
 
   it('should return "" for toBinary("Hello World!")', () => {
-    const str = toBinary("Hello World!");
+    const str = toBinary('Hello World!');
     console.log(str);
     expect(typeof str).toBe('string');
   });
