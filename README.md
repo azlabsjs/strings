@@ -50,5 +50,4 @@ beforeLast('o', 'Hello World!');
 
 ```ts
 const str = toBinary('Hello World!');
-console.log(str);
 ```
