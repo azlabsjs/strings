@@ -1,4 +1,4 @@
-import { after, afterLast, before, beforeLast, toBinary } from '../src';
+import { after, afterLast, before, beforeLast, compareHash, hashCode, hashEquals, toBinary } from '../src';
 
 describe('Strings utilities functions', () => {
   it('should return World! when afterLast(" ", "Hello World!") is called', () => {
@@ -18,5 +18,19 @@ describe('Strings utilities functions', () => {
     const str = toBinary('Hello World!');
     console.log(str);
     expect(typeof str).toBe('string');
+  });
+
+  it('should return false for hasEquals("Hello World!", "hello world!") ', () => {
+    expect(hashEquals('Hello World!', 'hello world!')).toBe(false);
+    expect(hashEquals('hello world!', 'hello world!')).toBe(true);
+  });
+
+  it('should return false for compareHash("Hello World!", "hello world!") ', () => {
+    expect(compareHash('Hello World!', 'hello world!')).toBe(false);
+    expect(compareHash('hello world!', 'hello world!')).toBe(true);
+  });
+
+  it('should return int value for hashCode("Hello World!") ', () => {
+    expect(typeof hashCode('Hello World!') === 'number').toBe(true);
   });
 });

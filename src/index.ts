@@ -65,3 +65,69 @@ export const toBinary = (value: string) => {
   }
   return result;
 };
+
+/**
+ * @description Hash function implementation
+ * It computes the hash value from user provided string
+ *
+ * @example
+ * const hash = hashCode('Hello Worl');
+ *
+ * console.log(hash);
+ */
+ export function hashCode(str: any) {
+  const typeofs = typeof str;
+  if (typeofs === 'number') {
+    return str;
+  }
+  str = typeofs === 'string' ? str : JSON.stringify(str);
+  let hash = 0;
+  const length = str.length;
+  if (length === 0) return hash;
+  for (let i = 0; i < length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return hash;
+}
+
+/**
+ * @description This function compare the hash value of 2 strings
+ * and returns true if returned hash are equals
+ *
+ * @example
+ * const result = compareHash('Hello', 'hello');
+ *
+ * console.log(result); // false
+ */
+export function compareHash(str1: string, str2: string) {
+  return (
+    (hashCode(str1) & 0x7fffffff) % str1.length ===
+    (hashCode(str2) & 0x7fffffff) % str2.length
+  );
+}
+
+/**
+ * @description Timing attack safe string comparison
+ *
+ * Compares two strings using the same time whether they're equal or not.
+ * This function should be used to mitigate timing attacks.
+ *
+ * @example
+ * const result = hashEquals('Hello', 'hello');
+ *
+ * console.log(result); // false
+ */
+export function hashEquals(str1: string, str2: string) {
+  const lenstr1 = str1.length;
+  const lenstr2 = str2.length;
+  if (lenstr1 !== lenstr2) {
+    return false;
+  }
+  const length = Math.min(lenstr1, lenstr2);
+  let result = 0;
+  for (let i = 0; i < length; i++) {
+    result = result | (str1.charCodeAt(i) ^ str2.charCodeAt(i));
+  }
+  return 0 === result;
+}
