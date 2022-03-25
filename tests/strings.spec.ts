@@ -1,4 +1,4 @@
-import { after, afterLast, before, beforeLast, compareHash, hashCode, hashEquals, toBinary } from '../src';
+import { after, afterLast, before, beforeLast, compareHash, hashCode, hashEquals, substr, toBinary } from '../src';
 
 describe('Strings utilities functions', () => {
   it('should return World! when afterLast(" ", "Hello World!") is called', () => {
@@ -32,5 +32,9 @@ describe('Strings utilities functions', () => {
 
   it('should return int value for hashCode("Hello World!") ', () => {
     expect(typeof hashCode('Hello World!') === 'number').toBe(true);
+  });
+
+  it('should return same result as String.prototype.substr() method ', () => {
+    expect(substr('Lorem Ipumsum', 3, 4)).toBe('Lorem Ipumsum'.substr(3, 4));
   });
 });

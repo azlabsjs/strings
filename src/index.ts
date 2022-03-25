@@ -8,6 +8,7 @@
  * @param haystack
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const afterLast = (char: string, haystack: string) => {
   const index = haystack.lastIndexOf(char);
   return haystack.slice(index + 1);
@@ -23,6 +24,7 @@ export const afterLast = (char: string, haystack: string) => {
  * @param haystack
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const after = (char: string, haystack: string) => {
   const index = haystack.indexOf(char);
   return haystack.slice(index + 1);
@@ -38,6 +40,7 @@ export const after = (char: string, haystack: string) => {
  * @param haystack
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const before = (char: string, haystack: string) =>
   haystack.slice(0, haystack.indexOf(char));
 
@@ -50,9 +53,11 @@ export const before = (char: string, haystack: string) =>
  * @param haystack
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const beforeLast = (char: string, haystack: string) =>
   haystack.slice(0, haystack.lastIndexOf(char));
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const toBinary = (value: string) => {
   const codeUnits = new Uint16Array(value.length);
   for (let i = 0; i < codeUnits.length; i++) {
@@ -75,7 +80,8 @@ export const toBinary = (value: string) => {
  *
  * console.log(hash);
  */
- export function hashCode(str: any) {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export function hashCode(str: any) {
   const typeofs = typeof str;
   if (typeofs === 'number') {
     return str;
@@ -100,6 +106,7 @@ export const toBinary = (value: string) => {
  *
  * console.log(result); // false
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function compareHash(str1: string, str2: string) {
   return (
     (hashCode(str1) & 0x7fffffff) % str1.length ===
@@ -118,7 +125,7 @@ export function compareHash(str1: string, str2: string) {
  *
  * console.log(result); // false
  */
-export function hashEquals(str1: string, str2: string) {
+export function hashEquals(str1: string, str2: string): boolean {
   const lenstr1 = str1.length;
   const lenstr2 = str2.length;
   if (lenstr1 !== lenstr2) {
@@ -131,3 +138,16 @@ export function hashEquals(str1: string, str2: string) {
   }
   return 0 === result;
 }
+
+/**
+ * Implementation of deprecated {@see String.prototy.substr()} method just
+ * for compatibility purpose
+ *
+ * @param a
+ * @param offset
+ * @param length
+ * @returns
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const substr = (str: string, offset: number, length: number) =>
+  str.substring(offset, Math.min(str.length, offset + length));
