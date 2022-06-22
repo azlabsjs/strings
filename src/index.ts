@@ -75,7 +75,7 @@ export const toBinary = (value: string) => {
  *
  * console.log(hash);
  */
- export function hashCode(str: any) {
+export function hashCode(str: any) {
   const typeofs = typeof str;
   if (typeofs === 'number') {
     return str;
@@ -130,4 +130,32 @@ export function hashEquals(str1: string, str2: string) {
     result = result | (str1.charCodeAt(i) ^ str2.charCodeAt(i));
   }
   return 0 === result;
+}
+
+
+/**
+ * Extract part of the string with a total of user specified length from a given index.
+ * It works like javascript deprecated String.substr implementation.
+ * 
+ * **Note**
+ * If the start index is a negative number, the start index is taken counting from right to
+ * length starting by 1
+ * 
+ * @param value 
+ * @param start 
+ * @param length 
+ * @returns 
+ */
+export function substr(value: string, start: number, length?: number) {
+  if (typeof value !== 'string') {
+    return '';
+  }
+  if (start > value.length) {
+    return '';
+  }
+  start = start >= 0 ? start : value.length - Math.abs(start);
+  if (start < 0) {
+    return '';
+  }
+  return String(value).substring(start, length ? start + length : undefined);
 }
