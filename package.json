@@ -36,7 +36,7 @@
       "default": "./dist/cjs/index.js"
     }
   },
-  "name": "@azlabsjs/strings",
+  "name": "@azlabsjs/str",
   "author": "azandrew-sidoine",
   "module": "dist/esm/index.js",
   "size-limit": [
